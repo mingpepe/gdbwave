@@ -788,6 +788,7 @@ int dbg_main(struct dbg_state *state)
 
         int ret;
 
+	LOG_DEBUG("gdb_main");
         LOG_INFO("Send signal %d", state->signum);
 	ret = dbg_send_signal_packet(pkt_buf, sizeof(pkt_buf), state->signum);
         if (ret == EOF){
@@ -797,6 +798,7 @@ int dbg_main(struct dbg_state *state)
 	while (1) {
 		/* Receive the next packet */
 		status = dbg_recv_packet(pkt_buf, sizeof(pkt_buf), &pkt_len);
+		LOG_DEBUG(pkt_buf);
 		if (status == EOF) {
 			break;
 		}
